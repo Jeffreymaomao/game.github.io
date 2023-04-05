@@ -25,7 +25,6 @@ const center = {
 	y: canvas.height/2,
 	max: max(canvas.width/2,canvas.height/2)
 };
-
 window.addEventListener("resize",()=>{
 	size.width = window.innerWidth;
 	size.height = window.innerHeight;
@@ -35,7 +34,6 @@ window.addEventListener("resize",()=>{
 	center.y_ = canvas.height/2;
 	center.max = max(canvas.width/2,canvas.height/2);
 })
-
 /** ---------------------------------------------------------------------------- */
 
 var dt = 0.1;
@@ -203,14 +201,32 @@ class balls{
 	constructor(n){
 		this.ball = [];
 		this.n = n;
-		for(i=0;i<this.n;i++){
+		for(i = 0;i < this.n;i++){
 			this.ball.push(new ball());
 		}
+		window.addEventListener('keydown',(e)=>{
+			if(e.key=='ArrowLeft'){
+				if(this.n>0){
+					this.del();
+				}
+			}
+			if(e.key=='ArrowRight'){
+				this.add();
+			}
+		})
 	}
 	draw(){
 		for(i=0;i<this.n;i++){
 			this.ball[i].draw();
 		}
+	}
+	del(){
+		this.n = this.n - 1;
+		this.ball.length = this.n;
+	}
+	add(){
+		this.n = this.n + 1;
+		this.ball.push(new ball());
 	}
 	update(){
 		for(i=0;i<this.n;i++){
@@ -218,6 +234,8 @@ class balls{
 		}
 	}
 }
+
+
 /** ---------------------------------------------------------------------------- */
 // initializer
 
