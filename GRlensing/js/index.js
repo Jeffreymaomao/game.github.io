@@ -133,6 +133,25 @@ class grapher {
         // this.canvas.style.imageRendering = 'crisp-edges';
         this.canvas.style.imageRendering = 'pixelated';
     }
+    resize(width,height){
+        this.scale = 0.5;
+        this.width = width;
+        this.height = height;
+        this.canvas.style.width = `${this.width}px`;
+        this.canvas.style.height = `${this.height}px`;
+        this.canvas.width = parseInt(this.canvas.style.width) * this.scale;
+        this.canvas.height = parseInt(this.canvas.style.height) * this.scale;
+        this.center = {
+            x: this.width / 2,
+            y: this.height / 2,
+            max: max(this.width / 2, this.height / 2)
+        }
+        this.canvas.center = {
+            x: this.canvas.width / 2,
+            y: this.canvas.height / 2,
+            max: max(this.canvas.width / 2, this.canvas.height / 2)
+        }
+    }
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
@@ -182,6 +201,8 @@ class circle{
         this.grapher.ctx.fill();
     }
     update(){
+        this.x = this.grapher.center.x;
+        this.y = this.grapher.center.y;
     }
 
 }
@@ -279,6 +300,10 @@ class blackhole {
         this.grapher.ctx.closePath();
         this.grapher.ctx.stroke();
         this.grapher.ctx.fill();
+    }
+    update(){
+        this.x = this.grapher.center.x;
+        this.y = this.grapher.center.y;
     }
 }
 class photon {
@@ -586,7 +611,7 @@ class photons {
     }
 }
 /** ---------------------------------------------------------------------------- */
-let App = new grapher('app', 0.1, 2, window.innerWidth, window.innerHeight);
+let App = new grapher('app', 0.1, 1.5, window.innerWidth, window.innerHeight);
 let BlackHole = new blackhole(App, 6.8e26);
 let rs2 = new circle(App, App.center.x, App.center.y, 1.5*Rs*meter2pixel, 'white', 'rgba(0,0,0,0)', 1);
 let rs3 = new circle(App, App.center.x, App.center.y, 2.6*Rs*meter2pixel, 'white', 'rgba(0,0,0,0)', 1);
@@ -607,22 +632,28 @@ App.canvas.addEventListener('mousemove', function(e) {
     mouse.y = (e.clientY - rect.y);
 });
 
+window.addEventListener('resize',(e)=>{
+    App.resize(window.innerWidth,window.innerHeight);
+})
+
 /** ---------------------------------------------------------------------------- */
 
 function draw(){
     BlackHole.draw();
-    rs2.draw();
-    rs3.draw();
-
     Photons.draw();
     Photon.draw();
+    rs2.draw();
+    rs3.draw();
 
 }
 
 function update(){
     App.clear();
     App.update();
+    BlackHole.update();
     Photon.update();
+    rs2.update();
+    rs3.update();
 
     draw();
     requestAnimationFrame(update);
