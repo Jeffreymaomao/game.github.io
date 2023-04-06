@@ -1,0 +1,13 @@
+*{
+	box-sizing: border-box;
+	position: relative;
+}
+
+#canvas{
+/*	border: 1px solid #ccc;*/
+	overflow: hidden;
+}
+
+body{
+	background-color: rgba(0,0,0,0.6);
+}
