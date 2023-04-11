@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src='../js/Math.js'></script>
+    <script src='../js/index.js'></script>
+
+    <title>Gravitational Lensing</title>
+</head>
+<body>
+    <canvas id='app'></canvas>
+    <script>
+        /** ------------------------------------------------------------------ */
+        let App = new grapher('app', 0.1, 1.5, window.innerWidth, window.innerHeight);
+        let BlackHole = new blackhole(App);
+        let rs2 = new circle(App, App.center.x, App.center.y, 1.5*Rs*meter2pixel, 'white', 'rgba(0,0,0,0)', 1);
+        let rs3 = new circle(App, App.center.x, App.center.y, 2.6*Rs*meter2pixel, 'white', 'rgba(0,0,0,0)', 1);
+
+        let Photon = new photon(App, BlackHole, 0, 2.6*Rs*meter2pixel, 4*pi, 'hsl(30,100%,50%)');
+        // var Radius = arange(-1,2,1).map(x=>x+2.6*Rs*meter2pixel);
+        var Radius = linspace(-2, 2, 30).map(x=>x+2.6*Rs*meter2pixel);
+
+        let Photons = new photons(App, BlackHole, 1, Radius, 5*pi, 'rgba(200,170,10, 0.5)');
+
+        window.addEventListener('resize',(e)=>{
+            App.resize(window.innerWidth,window.innerHeight);
+        })
+
+        /** ------------------------------------------------------------------ */
+
+        function draw(){
+            BlackHole.draw();
+            Photons.draw();
+            Photon.draw();
+            rs2.draw();
+            rs3.draw();
+
+        }
+
+        function update(){
+            App.clear();
+            App.update();
+            BlackHole.update();
+            Photon.update();
+            rs2.update();
+            rs3.update();
+
+            draw();
+            requestAnimationFrame(update);
+        }
+        update()
+    </script>
+</body>
+</html>
