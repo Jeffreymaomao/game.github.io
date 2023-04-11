@@ -5,6 +5,7 @@ var meter2pixel = 70;
 var pixel2meter = 1/meter2pixel;
 var Rs = 1;
 
+
 function hsv2rgb(h, s, v) {
     /**
      * input argument:
@@ -132,6 +133,15 @@ class grapher {
         }
         // this.canvas.style.imageRendering = 'crisp-edges';
         this.canvas.style.imageRendering = 'pixelated';
+        this.canvas.addEventListener('mousemove', function(e) {
+            var rect = this.getBoundingClientRect();
+            // var cssScaleX = this.width / this.offsetWidth;
+            // var cssScaleY = this.height / this.offsetHeight;
+            // mouse.x = (e.clientX - rect.x) * cssScaleX;
+            // mouse.y = (e.clientY - rect.y) * cssScaleY;
+            mouse.x = (e.clientX - rect.x);
+            mouse.y = (e.clientY - rect.y);
+        });
     }
     resize(width,height){
         this.scale = 0.5;
@@ -279,7 +289,7 @@ class arrow{
 
 /** ---------------------------------------------------------------------------- */
 class blackhole {
-    constructor(grapher, mass) {
+    constructor(grapher) {
         this.grapher = grapher;
         this.x = this.grapher.center.x;
         this.y = this.grapher.center.y;
@@ -327,13 +337,14 @@ class photon {
         this.x = linspace(x0,x0,this.n);
         this.y = linspace(y0,y0,this.n);
         /* ----------------------- */
-        this.updatePos2(y0);
+        this.updatePos1(y0);
         this.strokeStyle = strokeStyle;
         this.lineWidth = 2;
     }
     F(phi, U){
         var F0 = U[1];
-        var F1 = 1.5 * Rs * U[0]**2 - U[0]; // var F1 = - U[0];
+        var F1 = 1.5 * Rs * U[0]**2 - U[0];
+        // var F1 = - U[0];
         return [F0,F1];
     }
     u(phi){
@@ -525,19 +536,23 @@ class photon {
         this.grapher.ctx.closePath();
         
     }
-    draw(){
-        this.drawSeg1();
+    showR(){
+        for(var i=0;i<this.n;i++){
+            console.log(this.r[i]);
+        }
     }
     updatePos1(y0){
         this.y0 = y0;
         this.b = this.y0 * pixel2meter;
         this.U0 = [0, 1/abs(this.b)];
         this.U = this.U0;
+        var utemp = 0;
         /** Solving the ODE by the Classical Runge Kutta method*/
         for(var i=0;i<this.n;i++){
             this.U = rk4(this.F, this.phi[i], this.U, this.dphi);
+            if(isNaN(this.U[0])){this.U[0] = utemp;}
             this.r[i] = 1/this.U[0];
-            // this.r[i] = this.u(this.phi[i]);
+            utemp = this.U[0];
         }
         /** Transfer from Polar coordinate to Cartesian coordinate*/
         var changePhase = false;
@@ -566,7 +581,7 @@ class photon {
         for(var i=0;i<this.n;i++){
             this.U = rk4(this.F, this.phi[i], this.U, this.dphi);
             this.r[i] = 1/this.U[0];
-            // this.r[i] = this.u(this.phi[i]);
+            if(isNaN(this.r[i])){this.r[i]=1}
         }
         /** Transfer from Polar coordinate to Cartesian coordinate*/
         var changePhase = false;
@@ -576,6 +591,9 @@ class photon {
             this.y[i] = -this.r[i] * meter2pixel * sin(this.phi[i]);
             if(this.r[i]*this.r[i+1]<0){changePhase = true;}
         }
+    }
+    draw(){
+        this.drawSeg1();
     }
     update(){
         this.updatePos1(-(mouse.y - this.grapher.center.y));
@@ -610,53 +628,4 @@ class photons {
         }
     }
 }
-/** ---------------------------------------------------------------------------- */
-let App = new grapher('app', 0.1, 1.5, window.innerWidth, window.innerHeight);
-let BlackHole = new blackhole(App, 6.8e26);
-let rs2 = new circle(App, App.center.x, App.center.y, 1.5*Rs*meter2pixel, 'white', 'rgba(0,0,0,0)', 1);
-let rs3 = new circle(App, App.center.x, App.center.y, 2.6*Rs*meter2pixel, 'white', 'rgba(0,0,0,0)', 1);
-
-let Photon = new photon(App, BlackHole, 0, 2.6*Rs*meter2pixel, 4*pi, 'hsl(30,100%,50%)');
-// var Radius = arange(-1,2,1).map(x=>x+2.6*Rs*meter2pixel);
-var Radius = linspace(-2, 2, 30).map(x=>x+2.6*Rs*meter2pixel);
-
-let Photons = new photons(App, BlackHole, 1, Radius, 5*pi, 'rgba(200,170,10, 0.5)');
-
-App.canvas.addEventListener('mousemove', function(e) {
-    var rect = this.getBoundingClientRect();
-    // var cssScaleX = this.width / this.offsetWidth;
-    // var cssScaleY = this.height / this.offsetHeight;
-    // mouse.x = (e.clientX - rect.x) * cssScaleX;
-    // mouse.y = (e.clientY - rect.y) * cssScaleY;
-    mouse.x = (e.clientX - rect.x);
-    mouse.y = (e.clientY - rect.y);
-});
-
-window.addEventListener('resize',(e)=>{
-    App.resize(window.innerWidth,window.innerHeight);
-})
-
-/** ---------------------------------------------------------------------------- */
-
-function draw(){
-    BlackHole.draw();
-    Photons.draw();
-    Photon.draw();
-    rs2.draw();
-    rs3.draw();
-
-}
-
-function update(){
-    App.clear();
-    App.update();
-    BlackHole.update();
-    Photon.update();
-    rs2.update();
-    rs3.update();
-
-    draw();
-    requestAnimationFrame(update);
-}
-update()
 
