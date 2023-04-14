@@ -1,0 +1,134 @@
+@font-face {
+    font-family: "Sora Thin";
+    font-style: normal;
+    font-weight: 400;
+    src: url(assets/font/Sora-Thin.ttf) format('opentype');
+}
+
+html,
+body {
+    font-family: "Sora Thin", sans-serif;
+    font-size: 15pt;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+#draw {
+    text-align: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+    background-color: white;
+    border: solid;
+    padding: 0;
+    margin: 0;
+}
+
+#inform {
+    margin: 0;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+
+/* side bar */
+
+#sidebar {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.02);
+    position: absolute;
+    right: 100%;
+    top: 0;
+    height: calc(100% - 6px);
+    transition-duration: 500ms;
+    width: 40px;
+    overflow: hidden;
+}
+
+#sidebar > #sidebar_content {
+    position: relative;
+    overflow: hidden;
+    margin: 40px;
+}
+
+#sidebar:hover {
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition-duration: 500ms;
+}
+
+#sidebar > span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+#sidebar:hover > span {
+    margin-left: 10px;
+}
+
+#sidebar > span::after {
+    content: "\003008";
+    transition-duration: 500ms;
+}
+
+#sidebar:hover > span::after {
+    content: "\003009";
+    transition-duration: 500ms;
+}
+
+#sidebar_content > img {
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+    canvas {
+        height: 90vh;
+    }
+
+    #inform {
+        font-size: 20pt;
+    }
+
+    #sidebar {
+        display: none;
+    }
+}
+
+#rotate {
+    /*         display: none; */
+    font-size: 60pt;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    justify-content: center;
+    display: none;
+}
+
+/* When the phone is verticle */
+@media only screen and (orientation:portrait) {
+    #rotate {
+        display: flex;
+    }
+}
+
