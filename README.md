@@ -2,12 +2,19 @@
  
 ## [Gravitational Lensing game](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 > - landuage: `HTML`,`CSS`,`JavaScript`
-> - ODE solve: Classical Runge-Kutta method
+> - ODE solve: Classical 4-stage Runge-Kutta method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 
+<img src="./GRlensing/screenshot/test.png" width="400px" align="right">
 Visualization of the motion of photon near by Schwarzschild black hole. Using Schwarzschild metirc derive the Gravitational lensing formula
+
 $$\cfrac{du}{d\phi}-u = \cfrac{3GM}{c^2}u^2,\quad u=\cfrac{1}{r},$$
-which is a non-linear ODE. 
+
+which is a non-linear ODE, and I using Classical 4-stage Runge-Kutta method to solve every photon shoot from right hand side to left hand side. 
+
+Notice that near $2.6\,R_s$ is photon sphere, and the solution may easily diverge. ($R_s$ is the Schwarzschild Radius).
+
+$$R_s = \cfrac{2GM}{c^2}$$
 
 ## [General Relativity Precession](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
 > - landuage: `HTML`,`CSS`,`JavaScript`/`Python`
@@ -15,7 +22,7 @@ which is a non-linear ODE.
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
 > - python app: [https://jeffreymaomao.github.io/game.github.io/GRprecession/pyGRorbit/](https://jeffreymaomao.github.io/game.github.io/GRprecession/pyGRorbit/)
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg" width="100px" align="right"> When a planet comes into close proximity with a compact object, its orbit begins to precess, a phenomenon which can be explained by the principles of General Relativity. In the course "**General Physics Experiment (I)**" that I took in the second semester of sophomore year, we need to make a final project. Our group chose this phenomenon to simulate, using `Python`'s package called `VPython` that we learn in this course. However, it is not convenient for those who don't have Python, also using python can not customize the UI (User Interface). After the course, I rewrite all the project into web app, so user may start this app only click the url. 
+<img src="./GRprecession/webGRorbit/screenshot/precession.png" width="400px" align="right"> When a planet comes into close proximity with a compact object, its orbit begins to precess, a phenomenon which can be explained by the principles of General Relativity. In the course "**General Physics Experiment (I)**" that I took in the second semester of sophomore year, we need to make a final project. Our group chose this phenomenon to simulate, using `Python`'s package called `VPython` that we learn in this course. However, it is not convenient for those who don't have Python, also using python can not customize the UI (User Interface). After the course, I rewrite all the project into web app, so user may start this app only click the url. 
 
 In this project, the motion of planet si descibed by
 
