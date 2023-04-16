@@ -1,7 +1,7 @@
 # game.github.io
  
 ## [Gravitational Lensing game](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
-> - landuage: `HTML`,`CSS`,`JavaScript`
+> - language: `HTML`,`CSS`,`JavaScript`
 > - ODE solve: Classical 4-stage Runge-Kutta method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 
@@ -17,7 +17,7 @@ Notice that near $2.6\,R_s$ is photon sphere, and the solution may easily diverg
 $$R_s = \cfrac{2GM}{c^2}$$
 
 ## [General Relativity Precession](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
-> - landuage: `HTML`,`CSS`,`JavaScript`/`Python`
+> - language: `HTML`,`CSS`,`JavaScript`/`Python`
 > - ODE solve: 1~4 stage Runge-Kutta method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
 > - python app: [https://jeffreymaomao.github.io/game.github.io/GRprecession/pyGRorbit/](https://jeffreymaomao.github.io/game.github.io/GRprecession/pyGRorbit/)
@@ -31,7 +31,7 @@ $$\cfrac{d^2\vec{r}^2}{dt^2} = \cfrac{GM}{r^2}\left(1+\cfrac{6L^2}{m^2r^2c^2}\ri
 where $\vec{r}$ is the position vector of planet, $G$ is gravitational constant, $c$ is speed of light, $M$ is the mass of compact start, $L$ is the angular momentum of compact star and $m$ is the mass of planet.
 
 ## [Dragable balls game](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
-> - landuage: `HTML`,`CSS`,`JavaScript`
+> - language: `HTML`,`CSS`,`JavaScript`
 > - ODE solve: Euler method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/dragBall/index.html](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
 
@@ -41,7 +41,7 @@ where $\vec{r}$ is the postion vector of the ball, $m$ is the mass of the ball a
 
 
 ## [Running game](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
-> - landuage: `HTML`,`CSS`,`JavaScript`
+> - language: `HTML`,`CSS`,`JavaScript`
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg" width="80px" height="80px" align="right"> In the course "**Introduction to Game Design**" that I took in the second semester of my sophomore year, 
