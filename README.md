@@ -40,9 +40,9 @@ $$\displaystyle \cfrac{d^2\vec{r}}{dt^2} = -\cfrac{b}{m} \cfrac{d\vec{r}}{dt}, \
 where $\vec{r}$ is the postion vector of the ball, $m$ is the mass of the ball and $b$ is drag coefficient.
 
 
-## [Running game](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
+## [Running game](https://jeffreymaomao.github.io/game.github.io/running/main.html)
 > - language: `HTML`,`CSS`,`JavaScript`
-> - web app: [https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
+> - web app: [https://jeffreymaomao.github.io/game.github.io/running/main.html](https://jeffreymaomao.github.io/game.github.io/running/main.html)
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg" width="80px" height="80px" align="right"> In the course "**Introduction to Game Design**" that I took in the second semester of my sophomore year, 
 we need to make a final project with a simple game. The language we use in the course is `Lua`. 
