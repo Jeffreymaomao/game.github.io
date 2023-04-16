@@ -2,7 +2,7 @@
  
 ## [Gravitational Lensing game](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 > - language: `HTML`,`CSS`,`JavaScript`
-> - ODE solve: Classical 4-stage Runge-Kutta method
+> - ODE solver: Classical 4-stage Runge-Kutta method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 
 <img src="./GRlensing/screenshot/test.png" width="400px" align="right">
@@ -18,7 +18,7 @@ $$R_s = \cfrac{2GM}{c^2}$$
 
 ## [General Relativity Precession](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
 > - language: `HTML`,`CSS`,`JavaScript`/`Python`
-> - ODE solve: 1~4 stage Runge-Kutta method
+> - ODE solver: 1~4 stage Runge-Kutta method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
 > - python app: [https://jeffreymaomao.github.io/game.github.io/GRprecession/pyGRorbit/](https://jeffreymaomao.github.io/game.github.io/GRprecession/pyGRorbit/)
 
@@ -32,7 +32,7 @@ where $\vec{r}$ is the position vector of planet, $G$ is gravitational constant,
 
 ## [Dragable balls game](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
 > - language: `HTML`,`CSS`,`JavaScript`
-> - ODE solve: Euler method
+> - ODE solver: Euler method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/dragBall/index.html](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
 
 In the course "**General Physics Experiment (II)**" that I took in the first semester of the junior year, we need to make a simple game that user can manipulate the position and motion of the ball by drag it. Therefore I wrote this simple game using some web language. In the web app, every ball following the motion described by
