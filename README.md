@@ -2,6 +2,9 @@
 
 ## [Black Hole Ray Tracing](https://jeffreymaomao.github.io/game.github.io/GRraytrace/index.html)
 
+[![](https://badgen.net/badge/icon/source?icon=github&label)](https://github.com/Jeffreymaomao/game.github.io/tree/main/GRraytrace)
+[![](https://badgen.net/badge/icon/start/red?icon=chrome&label)](https://jeffreymaomao.github.io/game.github.io/GRraytrace/index.html)
+
 <img src="./GRraytrace/screenshot/test.png" width="400px" align="right">
 
 > - language: `HTML`,`CSS`,`JavaScript`
@@ -20,6 +23,9 @@ where the intial value is given by $u_0\left(\phi=0\right) = b$. However, the ph
 
 
 ## [Gravitational Lensing game](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
+
+[![](https://badgen.net/badge/icon/source?icon=github&label)](https://github.com/Jeffreymaomao/game.github.io/tree/main/GRlensing)
+[![](https://badgen.net/badge/icon/start/red?icon=chrome&label)](https://jeffreymaomao.github.io/game.github.io/GRlensing/index.html)
 
 <img src="./GRlensing/screenshot/test.png" width="400px" align="right">
 
@@ -43,6 +49,9 @@ $$R_s = \cfrac{2GM}{c^2}$$
 
 ## [General Relativity Precession](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
 
+[![](https://badgen.net/badge/icon/source?icon=github&label)](https://github.com/Jeffreymaomao/game.github.io/tree/main/GRprecession)
+[![](https://badgen.net/badge/icon/start/red?icon=chrome&label)](https://jeffreymaomao.github.io/game.github.io/GRprecession/webGRorbit/main.html)
+
 <img src="./GRprecession/webGRorbit/screenshot/precession.png" width="400px" align="right">
 
 > - language: `HTML`,`CSS`,`JavaScript`/`Python`
@@ -61,6 +70,10 @@ where $\vec{r}$ is the position vector of planet, $G$ is gravitational constant,
 
 
 ## [Dragable balls game](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
+
+[![](https://badgen.net/badge/icon/source?icon=github&label)](https://github.com/Jeffreymaomao/game.github.io/tree/main/dragBall)
+[![](https://badgen.net/badge/icon/start/red?icon=chrome&label)](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
+
 > - language: `HTML`,`CSS`,`JavaScript`
 > - ODE solver: Euler method
 > - web app: [https://jeffreymaomao.github.io/game.github.io/dragBall/index.html](https://jeffreymaomao.github.io/game.github.io/dragBall/index.html)
@@ -72,6 +85,9 @@ where $\vec{r}$ is the postion vector of the ball, $m$ is the mass of the ball a
 
 
 ## [Running game](https://jeffreymaomao.github.io/game.github.io/running/main.html)
+
+[![](https://badgen.net/badge/icon/source?icon=github&label)](https://github.com/Jeffreymaomao/game.github.io/tree/main/running)
+[![](https://badgen.net/badge/icon/start/red?icon=chrome&label)](https://jeffreymaomao.github.io/game.github.io/running/main.html)
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg" width="80px" height="80px" align="right">
 
