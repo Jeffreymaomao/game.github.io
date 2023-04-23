@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Symbola';
+    font-style: normal;
+    src: url("./font/Symbola.otf") format("opentype");
+}
+
+.mousedown{
+	cursor: pointer;
+}
+
+div{
+    font-family: 'Symbola';
+    color: white;
+    font-size: 12pt;
+}
+
+html,body{
+    overflow: hidden;
+
+}
+canvas{
+    position: fixed;
+    overflow: hidden;
+}
+
+var {
+}
