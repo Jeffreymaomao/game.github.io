@@ -18,7 +18,7 @@ Here I using [p5.js](https://p5js.org) to render the 3D space. Using Schwarzschi
 
 $$\cfrac{d^2u}{d\phi^2}-u = \cfrac{3GM}{c^2}u^2,\quad u=\cfrac{1}{r},$$
 
-where the intial value is given by $u_0\left(\phi=0\right) = b$. However, the photon from camera to every pixel of image have a included angle $\phi_0$, the path should be rotate by this angle to visualize this scene.
+where the intial value is given by $u_0\left(\phi=0\right) = 1/b$. However, the photon from camera to every pixel of image have a included angle $\phi_0$, the path should be rotate by this angle to visualize this scene.
 
 
 
