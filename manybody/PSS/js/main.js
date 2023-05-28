@@ -1,7 +1,14 @@
 
 const canvas = document.createElement('canvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const scale = 2;
+const size = {width: window.innerWidth,height: window.innerHeight};
+[canvas.style.width, canvas.style.height] = [`${size.width}px`, `${size.height}px`];
+[canvas.width, canvas.height] = [parseInt(canvas.style.width) * scale, parseInt(canvas.style.height) * scale];
+const center = {
+    x: canvas.width/2, 
+    y: canvas.height/2,
+    max: Math.max(canvas.width/2,canvas.height/2)
+};
 
 document.body.appendChild(canvas);
 
@@ -27,7 +34,6 @@ class Particle {
         const styles = ["paper","scissors","stone"];
         this.x = x;
         this.y = y;
-        this.m = 2.0;
         this.radius = radius;
         this.v = 1.0;
         this.dx = this.v * (Math.random() - 1);
@@ -153,11 +159,12 @@ function checkOverlap(x, y, radius) {
 
 const particles = [];
 const colors = ['red','green','blue'];
-for (let i = 0; i < 20; i++) {
+const N = 50;
+for (let i = 0; i < N; i++) {
     let radius, x, y;
     let isOverlapping;
     do {
-        radius = 40;
+        radius = (window.innerWidth/20) * scale;
         x = Math.random() * (canvas.width - radius * 2) + radius;
         y = Math.random() * (canvas.height - radius * 2) + radius;
         isOverlapping = checkOverlap(x, y, radius);
