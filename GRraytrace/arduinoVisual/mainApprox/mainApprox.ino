@@ -1,0 +1,64 @@
+#include "./LCD12864.h"
+#include "./lib/Vec.h"
+#include "./lib/AccretionDisk.h"
+#include "./lib/Photon.h"
+
+#include "./lib/image.h"
+extern unsigned char img[1024];
+// unsigned char img[1024];
+
+const double Rs = 4.0;
+
+
+int main(){
+	/** =================================================================
+	 * Initializer
+	 * =================================================================*/
+	init();						// Arduino initialize
+	Serial.begin(9600);			// Serial Port intialize
+    LCDA.initialise();			// LCD screen initialize
+    LCDA.drawFullScreen(img);	// Draw a intial image first
+	/** =================================================================
+	 * Algorithm
+	 * =================================================================*/
+	double x_image  = 500;					// Distance from image plane to black hole
+	double x_camera = 5000;					// Distance from camera to black hole
+	const Vec3 camera(x_camera,  0, 0);		// camera point vector
+	const AccretionDisk accretiondisk(4*Rs, 15*Rs, M_PI/2 + 0.1);	// create camera point vector
+
+
+    Serial.println("start time");
+    unsigned long StartTime = millis();
+
+	bool value;
+	for(int i=0;i<1024;i++){
+		img[i] = 0x00; // pixels in LCD image
+		for(int j=0;j<8;j++){
+			double x = (i%16) * 8 + j;	// index in LCD image to pixel image
+			double y = floor(i/16);		// index in LCD image to pixel image
+
+			Vec3 imagePoint	(x_image, x - 64, y - 32);	// create a image point vector 
+			Photon photon(camera, imagePoint);			// create a photon start from camera point at image point
+            photon.theta += 0.45;
+			value = false;
+			if(photon.isCross(accretiondisk)){value = true;}
+			img[i] += value * (1<<7-j); // img[i] = img[i] + value * 2^(7-j)
+		}
+		if(i%16==15){
+			LCDA.drawFullScreen(img);	// every time calculating one row, redraw the image to LCD
+		}
+	}
+
+    unsigned long CurrentTime = millis();
+    Serial.println("end time");
+    Serial.print("Calculate time:\t");
+    Serial.print((CurrentTime - StartTime)*0.001/60);// 425124
+    Serial.println("\t(min)");
+
+	LCDA.drawFullScreen(img);
+
+	while(true){
+		// do noting
+	}
+	return 0;
+}
