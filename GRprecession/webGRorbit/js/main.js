@@ -120,11 +120,12 @@ function ShowAllEvent(){
         } 
     });
 };
+
 /* --(Object) Orbit, Parameters--------------------- */
 var Data = {
     G: 2.9593e-4,  // gravitational constant (AU^3/M☉/day^2)
     c: 1.7314e2,   // speed of light (AU/day)
-    __M: 1, // solar mass (M☉)
+    __M: 1000000, // solar mass (M☉)
     get M () {
         return this.__M;
         init();
@@ -139,7 +140,7 @@ var Data = {
     set r0 (R) {
         this.__r0 = R;
     },
-    __v0: 0.0340,    // Perihelion velocity (AU/day)
+    __v0: 40.6,    // Perihelion velocity (AU/day)
     get v0 () {
         return this.__v0;
     },
@@ -160,7 +161,7 @@ var Data = {
     set Rplanet (R) {
         this.__Rplanet = R;
     },
-    __Y0: new vec6(0.3074, 0, 0, 0, 0, 0.0340), //initalize value
+    __Y0: new vec6(0.3074, 0, 0, 0, 0, 40.6), //initalize value
     get Y0 () {
         return this.__Y0;
     },
@@ -168,7 +169,7 @@ var Data = {
         this.__Y0 = GeneralVector;
         init();
     },
-    __Y: new vec6(0.3074, 0, 0, 0, 0, 0.0340), //initalize value
+    __Y: new vec6(0.3074, 0, 0, 0, 0, 40.6), //initalize value
     get Y () {
         return this.__Y;
     },
@@ -182,7 +183,7 @@ var Data = {
     set t (time) {
         this.__t = time;
     },
-    __dt: 0.001, //initalize value
+    __dt: 0.000005, //initalize value
     get dt () {
         return this.__dt;
     },
@@ -266,7 +267,7 @@ let Spheres = {
     }),
     Planet: sphere({
         make_trail: true,
-        trail_radius: Data.Rplanet / 40,
+        trail_radius: Data.Rplanet / 15,
         trail_color: color.yellow,
         pos: Data.Y.position,
         v: Data.Y.velocity,

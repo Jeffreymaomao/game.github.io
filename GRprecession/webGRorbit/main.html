@@ -84,7 +84,7 @@
                 <div id="InitialValue">
                     <div id="InitialMass">
                         <span id="M0">M_0 = </span>
-                        <span id="M0input">1</span>
+                        <span id="M0input">1000000</span>
                         <span id="M0unit">\left(M{\odot}\right)</span>
                     </div>
                     <div id="InitialRadius">
@@ -94,20 +94,20 @@
                     </div>
                     <div id="InitialVelocity">
                         <span id="V0">v_0 = </span>
-                        <span id="V0input">0.0340</span>
+                        <span id="V0input">40.6</span>
                         <span id="V0unit">\left(\mathrm{AU/day}\right)</span>
                     </div>
                     <div id="TimeInterval">
                         <span id="dt">dt = </span>
-                        <span id="dtinput">0.001</span>
+                        <span id="dtinput">0.000005</span>
                         <span id="dtunit">\left(\mathrm{AU/day}\right)</span>
                     </div>
                     <div>
                         <!-- <select name="InitialValueReference" id="InitialValueReference" onchange="changeRef()"> -->
                         <select name="InitialValueReference" id="InitialValueReference">
                             <option value="none">reference: none</option>
-                            <option value="suggestion">reference: suggestion orbit</option>
-                            <option value="mercury" selected="selected">reference: Mercury orbit</option>
+                            <option value="suggestion"  selected="selected">reference: suggestion orbit</option>
+                            <option value="mercury">reference: Mercury orbit</option>
                             <option value="s0">reference: S0 orbit</option>
                         </select>
                     </div>
@@ -115,7 +115,7 @@
             <h3>Numerical Method</h3>
                 <div>
                     <!-- <select name="IterationMethod" id="IterationMethod" onchange="changeRK()"> -->
-                    <select name="IterationMethod" id="IterationMethod"">
+                    <select name="IterationMethod" id="IterationMethod">
                         <option value="RK1_Euler">RK1: Forward Euler</option>
                         <option value="RK2_Explicit">RK2: Explicit midpoint method</option>
                         <option value="RK2_Heun">RK2: Heun's method</option>
