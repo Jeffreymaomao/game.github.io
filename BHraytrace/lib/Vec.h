@@ -42,6 +42,8 @@ struct Vec3 {
 	// constructor
 	Vec3(double x, double y, double z): 
 		x(x),y(y),z(z){}
+	Vec3():x(),y(),z(){
+	}
 	Vec3 operator + (const Vec3& v) const {return Vec3(x+v.x, y+v.y, z+v.z);}
 	Vec3 operator - (const Vec3& v) const {return Vec3(x-v.x, y-v.y, z-v.z);}
 	Vec3 operator * (double n) const {return Vec3(x*n, y*n, z*n);}
@@ -54,6 +56,12 @@ struct Vec3 {
         z = v.z;
         return *this;
     }
+    Vec3 cross(const Vec3& v) const {
+	    double x_ = y * v.z - z * v.y;
+	    double y_ = z * v.x - x * v.z;
+	    double z_ = x * v.y - y * v.x;
+	    return Vec3(x_, y_, z_);
+	}
 	// vector normalization
 	Vec3 normalize() const {double mg = sqrt(x*x + y*y + z*z);return Vec3(x/mg,y/mg,z/mg);}
 	// dot product of vector
@@ -65,3 +73,10 @@ struct Vec3 {
     	return os;
     }
 };
+
+Vec3 polarToCartesian(double r, double theta, double phi) {
+    double x = r * sin(theta) * cos(phi);
+    double y = r * sin(theta) * sin(phi);
+    double z = r * cos(theta);
+    return Vec3(x, y, z);
+}
