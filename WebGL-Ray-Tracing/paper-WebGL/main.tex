@@ -1,0 +1,122 @@
+\documentclass[a4paper, reprint, showkeys, nofootinbib,twoside]{revtex4-1}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{import}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\hypersetup{
+	pdftex,
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=blue,
+	pdftitle={Article},
+	pdfauthor={Author},
+}
+%\usepackage{fontspec}
+%\usepackage{xeCJK}
+%\setCJKfamilyfont{kai}{標楷體}
+%==================================================================================
+\begin{document}
+	\title{Computer Graphics, Ray-Tracing}
+	\author{Chang-Mao Yang}
+	\email[Correspondence email address: ]{jeffrey0613mao@gmail.com}
+	\affiliation{National Chung Cheng University, Department of Physics}
+	\date{\today}
+	
+	\begin{abstract}
+		\lipsum[1]
+	\end{abstract}
+	
+	\keywords{first keyword, second keyword, third keyword}
+	
+	\maketitle
+	%------------------------------------------------
+	%--------------
+	\section{WebGL} \label{sec:webgl}
+	\subsection{Canvas Surface}
+		We consider a subset $\mathbb{I} \subset \mathbb{R}^2$ defined as:
+		 \begin{equation}
+		 \mathbb{I} = \{ (x,y)\in \mathbb{Z}^2\,|\, 0\leq x< m, 0\leq y< n\},
+		 \end{equation}
+		 which represents the position of an image, where this image surface has a specified width $m$ and height $n$. Also, consider a color vector space $\mathbb{C}\subset \mathbb{R}^3$ defined as:
+		 \begin{equation}
+		 \mathbb{C} = \{ (r,g,b)\in \mathbb{R}^3\,|\, r,g,b \in [0,1]\}.
+		 \end{equation}
+		 To describe the color at any given point $(x, y)$ on the image, we define a vector function $\vec{f} : \mathbb{I}\to \mathbb{C}$. This function maps each point \((x, y)\) to a color vector, represented as:
+		\begin{equation}
+		\vec{f}(x, y) = \begin{pmatrix} r(x, y) \\ g(x, y) \\ b(x, y)\end{pmatrix},
+		\end{equation}
+		where $r(x, y)$, $g(x, y)$ and $b(x, y)$ denote the red, green, blue components of the color at point $(x, y)$, respectively. 
+		
+		For example we can graph the gradient color in two direction as following
+		\begin{figure}[h]\centering
+			\begin{subfigure}{0.4\linewidth}\centering
+				\includegraphics[width=\textwidth]{img/gradient-x.png}
+				\caption{Define $r(x,y) = g(x,y)=b(x,y) = x/m$.}\label{fig:sub1}
+			\end{subfigure}
+			\hspace{0.05\linewidth}
+			\begin{subfigure}{0.4\linewidth}\centering
+				\includegraphics[width=\textwidth]{img/gradient-y.png}
+				\caption{Define $r(x,y) = g(x,y)=b(x,y) = y/n$.}\label{fig:sub2}
+			\end{subfigure}
+			\caption{Two different definition of $\vec{f}$, where the color only change with the direction of $x$ or $y$.}\label{fig:test}
+		\end{figure}
+	
+	%--------------
+	\section{Screen} \label{sec:screen}
+	Now, we consider the screen position $\vec{p}_{screen}$ to be
+	\begin{equation}
+	\vec{P}_{\rm screen} = \left(x,y\right),\quad x\in \left[-\frac{w}{h}, \frac{w}{h}\right],\quad y\in [-1,1],
+	\end{equation}
+	see as image below
+	
+	\begin{figure}[h]
+	\centering
+		\import{./}{img/screenPosition.tex}
+	\caption{Screen Coordinates (SC) space.}
+	\end{figure}
+	
+	\begin{itemize}
+	\item  Normalized Device Coordinates (NDC) spce
+		\begin{verbatim}
+// gl_FragCoord.x : [0, 1] 
+// gl_FragCoord.y : [0, 1] 
+// screenPos.x : [-1.0 ~ 1.0] * width / height
+// screenPos.y : [-1.0 ~ 1.0] * 1.0
+		\end{verbatim}
+	\item Screen Coordinates (SC) space
+		\begin{verbatim}
+// screenPos.x : [-1.0 ~ 1.0] * width / height
+// screenPos.y : [-1.0 ~ 1.0] * 1.0
+		\end{verbatim}
+	\item World Coordinates (WC) space
+	\end{itemize}
+	
+
+
+		
+
+
+	%------------------------------------------------
+	%\begin{thebibliography}{4}
+		%\bibitem{Griffiths} D. J. Griffiths, \textit{Introduction to Electrodynamics} (Cambridge University Press, Cambridge, 2017).
+		%\bibitem{Fleming}  A. Bobrinha, Revista Brasileira de Lorem Ipsum \textbf{23}, 179 (2002).
+		%\bibitem{Feynman} R. P. Feynman, R. B. Leighton and M. Sands,
+	%\end{thebibliography}
+	%------------------------------------------------
+	
+\end{document}%文章結束
+
