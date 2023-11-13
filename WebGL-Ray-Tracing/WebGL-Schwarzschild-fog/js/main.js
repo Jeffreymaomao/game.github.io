@@ -1,10 +1,10 @@
 const config = {
     canvasId: "app",
-    resolution: 1,
+    resolution: 0.8,
     width: 600, 
     height: 400,
-    fullscreen: true, // if fullscreen => ignore width and height
-    skyboxURL: '../skybox/universe/skybox1.png',
+    fullscreen: false, // if fullscreen => ignore width and height
+    skyboxURL: '../skybox/universe/skybox3.png',
     vertexShaderURL: "./js/vert.glsl",
     fragmentShaderURL: "./js/frag.glsl",
     camera: {
@@ -21,6 +21,8 @@ const config = {
     }
 };
 initCanvas();
+
+// https://www.shadertoy.com/view/lstSRS
 
 function initCanvas(){
     const canvas = document.getElementById(config.canvasId);
