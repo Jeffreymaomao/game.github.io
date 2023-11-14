@@ -7,13 +7,12 @@ uniform float azimuthalAngle;
 uniform float cameraDistance;
 uniform int drawDisk;
 uniform vec3 iResolution;
-uniform sampler2D uSkysphere;
+uniform samplerCube uSkybox;
 
 // Physics constant
 const float PI = 3.1415925359;
 const int MAX_STEPS = 800;
 const float MAX_DISTANCE = 100.0;
-const float GR_EFFECT = 1.0;
 
 const float RS = 1.0; // Schwarzschild Radius
 const float MIN_RADIUS = 2.6*RS; // Schwarzschild Radius
@@ -117,7 +116,7 @@ struct Ray{
 };
 
 vec2 ODE(float x, vec2 U){
-    return vec2(U.y, 1.5*U.x*U.x*GR_EFFECT - U.x);
+    return vec2(U.y, 1.5*U.x*U.x - U.x);
 }
 
 vec2 RK1(float x, vec2 U, float h) {
@@ -180,12 +179,7 @@ vec3 RayMarching(Ray ray){
             break;
         }
     }
-    
-    dir = -dir.xyz;
-    float azimuth = atan(dir.y, dir.x);
-    float elevation = asin(dir.z);
-    vec2 texCoords = vec2(azimuth / (2.0 * PI), elevation / PI) + 0.5;
-    vec3 backgroundColor = texture2D(uSkysphere, texCoords).rgb.rgb * 0.499;
+    vec3 backgroundColor = textureCube(uSkybox, -dir.xzy).rgb * 0.499;
     if(drawDisk>0 && isHit){
         if(isInside){backgroundColor = vec3(0.0, 0.0, 0.0);}
         color = calculateColor(pos, hitRad, hitDistance, backgroundColor);
@@ -211,7 +205,7 @@ void main() {
     vec3 cameraDir = normalize(vec3(0.0, 0.0, 0.0) - cameraPos); // camera point to origin
     vec3 cameraRight = normalize(cross(cameraDir, vec3(0.0, 0.0, 1.0)));
     vec3 cameraUp = cross(cameraRight, cameraDir);
-    float cameraFOV = PI / 2.0; // Field of View (FoV)
+    float cameraFOV = PI / 2.6; // Field of View (FoV)
     float fovFactor = tan(cameraFOV*0.5);
     vec3 rayDir = normalize(cameraDir + fovFactor * screenPos.x * cameraRight + fovFactor * screenPos.y * cameraUp);
     Ray ray = Ray(cameraPos, rayDir);

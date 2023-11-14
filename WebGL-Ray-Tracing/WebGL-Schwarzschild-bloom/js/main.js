@@ -4,7 +4,9 @@ const config = {
     width: 600, 
     height: 400,
     fullscreen: true, // if fullscreen => ignore width and height
-    skysphereURL: '../skysphere/reMilkyWay.png',
+    skyboxURL: '../skybox/universe/skybox3.png',
+    // skyboxURL: '../skybox/test/skybox2.png',
+    // skyboxURL: '../skybox/forest/skybox1.png',
 
     sceneVertexShaderURL: "./js/scene-vert.glsl",
     sceneFragmentShaderURL: "./js/scene-frag.glsl",
@@ -16,9 +18,9 @@ const config = {
     finalFragmentShaderURL: "./js/final-frag.glsl",
 
     camera: {
-        distance: 15,
+        distance: 20,
         polarAngle: 2.6,
-        azimuthalAngle: 1.4,
+        azimuthalAngle: 1.3,
     },
     mouse: {
         down: false,
@@ -224,19 +226,11 @@ function initWebGL(canvas, sceneVertCode, sceneFragCode, bloomVertCode, bloomFra
     gl.vertexAttribPointer(positionAttribLocationFinal, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(positionAttribLocationFinal);
 
-    const skysphereTexture = loadSkysphereTexture(gl, config.skysphereURL);
-    const skysphereLocation = gl.getUniformLocation(sceneShaderProgram, 'uSkysphere');
+    const skyboxTexture = loadSkyboxFromCrossAtlas(gl, config.skyboxURL);
+    const skyboxLocation = gl.getUniformLocation(sceneShaderProgram, 'uSkybox');
 
     // Start the render loop
-    let azimuthalAngleAnimate = 0.00001;
-    let polarAngleAnimate = 0.0001;
     function render() {
-        if (!config.mouse.down) {
-            
-            config.camera.azimuthalAngle += azimuthalAngleAnimate;
-            config.camera.polarAngle += polarAngleAnimate;
-        }
-
         const iTime = performance.now()/1000.0; // seconds
         const iResolution = [config.width*config.resolution,config.height*config.resolution,1.0];
         // --- Clear the canvas ---
@@ -269,9 +263,8 @@ function initWebGL(canvas, sceneVertCode, sceneFragCode, bloomVertCode, bloomFra
 
             // texture
             gl.activeTexture(gl.TEXTURE0);
-            gl.uniform1i(skysphereLocation, 0); // 将纹理单元0传递给uniform变量
-            gl.bindTexture(gl.TEXTURE_2D, skysphereTexture);
-
+            gl.uniform1i(skyboxLocation, 0); // 将纹理单元0传递给uniform变量
+            gl.bindTexture(gl.TEXTURE_CUBE_MAP, skyboxTexture);
         gl.drawElements(gl.TRIANGLES, vertexCount, gl.UNSIGNED_SHORT, 0);
 
         // - bloom buffer
@@ -286,7 +279,6 @@ function initWebGL(canvas, sceneVertCode, sceneFragCode, bloomVertCode, bloomFra
             gl.uniform1i(gl.getUniformLocation(bloomShaderProgram, "uSceneTexture"), 0);
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D, sceneTexture);
-
         gl.drawElements(gl.TRIANGLES, vertexCount, gl.UNSIGNED_SHORT, 0);
         // --- Draw the final scene
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
@@ -311,8 +303,6 @@ function initWebGL(canvas, sceneVertCode, sceneFragCode, bloomVertCode, bloomFra
 
     requestAnimationFrame(render);
 }
-
-
 
 function loadSkyboxFromCrossAtlas(gl, imageUrl) {
     const texture = gl.createTexture();
@@ -396,25 +386,6 @@ function mouseEvent(canvas){
         config.camera.distance = Math.max(6.28, Math.min(1000.0, config.camera.distance));
     }, { passive: true });
 }
-
-function loadSkysphereTexture(gl, imageUrl) {
-    const texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-
-    const image = new Image();
-    image.onload = () => {
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    };
-    image.src = imageUrl;
-
-    return texture;
-}
-
 
 function keyEvent() {
     window.addEventListener("keydown",(e)=>{
