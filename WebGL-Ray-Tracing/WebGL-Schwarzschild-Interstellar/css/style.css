@@ -1,0 +1,42 @@
+*{
+    position: relative;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #ccc;
+}
+
+html, body, main{
+    overflow: hidden;
+}
+
+input,ul,li{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+canvas{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid black;
+    cursor: grab;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
