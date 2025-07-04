@@ -8,7 +8,7 @@
 <img src="./WebGL-Ray-Tracing/img/Kerr.png" width="400px" align="right">
 
 > - language: `HTML`,`CSS`,`JavaScript`,`glsl`
-> - web app list: [https://jeffreymaomao.github.io/game.github.io/GRraytrace/index.html](https://jeffreymaomao.github.io/game.github.io/WebGL-Ray-Tracing/README.md)
+> - web app list: [https://jeffreymaomao.github.io/game.github.io/WebGL-Ray-Tracing](https://jeffreymaomao.github.io/game.github.io/WebGL-Ray-Tracing)
 > - [web : kerr BH](https://jeffreymaomao.github.io/game.github.io/WebGL-Ray-Tracing/Template-Kerr)
 > - [web : Schwarzschild BH](https://jeffreymaomao.github.io/game.github.io/WebGL-Ray-Tracing/Template-Schwarzschild)
 > - [web : Flat BH](https://jeffreymaomao.github.io/game.github.io/WebGL-Ray-Tracing/Template-FlatSpace)
